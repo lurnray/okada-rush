@@ -2,8 +2,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float laneDistance = 3.0f; // Distance between lanes
+    public GameObject road; // Reference to the road GameObject
+    private float laneWidth;
+
     private int currentLane = 1; // Middle lane
+
+    void Start()
+    {
+        // Calculate lane width based on the road's scale
+        laneWidth = road.transform.localScale.x / 3;
+    }
 
     void Update()
     {
@@ -18,7 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         currentLane = Mathf.Clamp(currentLane + direction, 0, 2); // Limit lanes to 0, 1, or 2
         Vector3 targetPosition = transform.position;
-        targetPosition.x = (currentLane - 1) * laneDistance; // Adjust lane position
+        targetPosition.x = (currentLane - 1) * laneWidth; // Recalculate X position based on lane
         transform.position = targetPosition;
     }
 }
