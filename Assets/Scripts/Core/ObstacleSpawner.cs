@@ -2,20 +2,28 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    public GameObject[] obstacles; // Array to hold potholes, roadblocks, etc.
-    public float spawnInterval = 1.5f; // Time between spawns
-    public float spawnDistance = 20f; // Distance ahead of the player to spawn obstacles
-    public Transform player; // Reference to the player
+    public GameObject[] obstacles; // Array of obstacle prefabs
+    public float spawnInterval = 2f; // Time between spawns
+    public float roadWidth = 6.0f; // Total width of the road
+    public float spawnDistance = 50f; // Distance ahead of the player to spawn obstacles
 
-    private float timer = 0;
+    private Transform playerTransform;
+    private float laneWidth;
+
+    void Start()
+    {
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        laneWidth = roadWidth / 3; // Divide road into 3 lanes
+    }
 
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= spawnInterval)
+        spawnInterval -= Time.deltaTime;
+
+        if (spawnInterval <= 0)
         {
             SpawnObstacle();
-            timer = 0;
+            spawnInterval = 2f; // Reset spawn interval
         }
     }
 
@@ -24,12 +32,12 @@ public class ObstacleSpawner : MonoBehaviour
         // Randomly select an obstacle prefab
         GameObject obstacle = obstacles[Random.Range(0, obstacles.Length)];
 
-        // Randomly select a lane (3 lanes: left, center, right)
+        // Randomly select a lane
         int lane = Random.Range(0, 3);
-        float xPosition = (lane - 1) * 3.0f; // Adjust lane width (3 units apart)
+        float xPosition = (lane - 1) * laneWidth;
 
         // Calculate spawn position
-        Vector3 spawnPosition = new Vector3(xPosition, 0, player.position.z + spawnDistance);
+        Vector3 spawnPosition = new Vector3(xPosition, 0.5f, playerTransform.position.z + spawnDistance);
 
         // Instantiate the obstacle
         Instantiate(obstacle, spawnPosition, Quaternion.identity);
