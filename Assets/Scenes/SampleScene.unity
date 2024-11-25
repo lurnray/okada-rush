@@ -184,7 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadPrefab: {fileID: 441054900122742132, guid: 2d7d0bd2c9375e84783c94e72a39944f, type: 3}
   numRoadSegments: 5
-  roadLength: 50
+  roadLength: 30
 --- !u!4 &511628127
 Transform:
   m_ObjectHideFlags: 0
@@ -534,6 +534,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   road: {fileID: 1759338210}
+  speed: 10
+--- !u!1 &1218083524 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3494902795174001635, guid: 2d7d0bd2c9375e84783c94e72a39944f, type: 3}
+  m_PrefabInstance: {fileID: 19295601951265387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1218083529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218083524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4874322b14f623e4c8aa5b42ab36fb38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tumbleForce: 5
+--- !u!54 &1218083530
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218083524}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1759338210 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 441054900122742132, guid: 2d7d0bd2c9375e84783c94e72a39944f, type: 3}
@@ -571,9 +617,9 @@ MonoBehaviour:
   obstacles:
   - {fileID: 6636872428527141309, guid: 766a0942a3314c2459ebd00b3cc5f2fa, type: 3}
   - {fileID: 3650873098589338, guid: 0235f3389dafc034ea979c0ce7f492d0, type: 3}
-  spawnInterval: 6
-  roadWidth: 6
-  spawnDistance: 50
+  road: {fileID: 1759338210}
+  spawnInterval: 1
+  spawnDistance: 30
 --- !u!4 &1801209831
 Transform:
   m_ObjectHideFlags: 0
@@ -648,7 +694,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3494902795174001635, guid: 2d7d0bd2c9375e84783c94e72a39944f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1218083529}
+    - targetCorrespondingSourceObject: {fileID: 3494902795174001635, guid: 2d7d0bd2c9375e84783c94e72a39944f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1218083530}
   m_SourcePrefab: {fileID: 100100000, guid: 2d7d0bd2c9375e84783c94e72a39944f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
